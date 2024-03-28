@@ -10,7 +10,9 @@ class Package:
         this_package.notes = notes
         this_package.status = status
 
-    #def __str__(this_package):
-
+    def __str__(this_package):
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (this_package.package_id, this_package.address, this_package.city,
+                                                       this_package.state, this_package.zip_code, this_package.deadline,
+                                                       this_package.weight, this_package.notes, this_package.status)
 
     #def package_status(this_package):

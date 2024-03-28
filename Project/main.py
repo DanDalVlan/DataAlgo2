@@ -20,5 +20,9 @@ with open("WGUPS_Package_File_CSV.csv") as package_file:
 
         temp_package = Package(package_id, address, city, state, zip_code, deadline, weight, notes, status)
         package_table.insert(package_id, temp_package)
+        print(temp_package)
 
-    package_table.print()
+    for item in package_table.hash_table:
+        print(str(item))
+
+    print(package_table.get(22))
