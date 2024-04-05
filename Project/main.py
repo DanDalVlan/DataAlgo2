@@ -174,6 +174,7 @@ with open("WGUPS_Package_File_CSV.csv") as package_file:
             # Space-time complexity: O(n)
             elif input_selection == 2:
                 # Print header and then loop to print package data for every package
+                print("Time now: ", input_time, "\tTotal Mileage: ", total_mileage)
                 print(header_row)
                 for package_id in range(1, 41):
                     print_package(package_id, input_time)
