@@ -1,3 +1,4 @@
+# Custom "Truck" object that holds all the relevant information for each truck
 class Truck:
     def __init__(this_truck, truck_id, depart_time, current_time, capacity, packages, speed, mileage, location):
         this_truck.truck_id = truck_id
