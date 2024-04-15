@@ -4,6 +4,7 @@
 # Import statements
 import csv
 import datetime
+
 from HashTable import HashTable
 from Package import Package
 from Truck import Truck
@@ -83,6 +84,7 @@ with open("WGUPS_Package_File_CSV.csv") as package_file:
         temp_truck = []
         for package_id in truck.packages:
             temp_package = package_table.get(package_id)
+            temp_package.update_details_based_on_time(truck.current_time)  # Updates package info for package #9 only
             temp_truck.append(temp_package)
         # Clearing out the real truck to make way for the sorted packages
         truck.packages.clear()
@@ -107,6 +109,7 @@ with open("WGUPS_Package_File_CSV.csv") as package_file:
     # Function that uses a package_id and a user selected time to print details about that package at that time
     def print_package(input_package, input_time):
         output_package = package_table.get(input_package)
+        output_package.update_details_based_on_time(input_time)  # Updates package info for package #9 only
         output_package.package_status(input_time)
         package_info = [
             output_package.package_id,
@@ -193,6 +196,3 @@ with open("WGUPS_Package_File_CSV.csv") as package_file:
             else:
                 # If user selects anything other than valid choices, tell them they've chosen poorly
                 print("Invalid selection")
-
-
-
