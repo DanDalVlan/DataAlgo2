@@ -10,8 +10,8 @@ from Package import Package
 from Truck import Truck
 
 # Creating a generic header that will be used later
-header = ["ID", "Dept Time", "Arr Time", "Due By", "Status", "Weight", "Zip", "State", "City", "Address"]
-column_widths = [5, 15, 15, 15, 15, 10, 10, 10, 20, 30]
+header = ["ID", "Dept Time", "Arr Time", "Due By", "Status", "Truck", "Weight", "Zip", "State", "City", "Address"]
+column_widths = [5, 15, 15, 15, 15, 10, 10, 10, 10, 20, 30]
 header_row = "".join(word.ljust(column_widths[index]) for index, word in enumerate(header))
 
 # Opening the csv file that lists the addresses being used
@@ -111,12 +111,21 @@ with open("WGUPS_Package_File_CSV.csv") as package_file:
         output_package = package_table.get(input_package)
         output_package.update_details_based_on_time(input_time)  # Updates package info for package #9 only
         output_package.package_status(input_time)
+        # Check to see what truck the package belongs to, then add that to the package details for printing
+        if output_package.package_id in truck_1.packages:
+            output_package.truck = 1
+        elif output_package.package_id in truck_2.packages:
+            output_package.truck = 2
+        else:
+            output_package.truck = 3
+        # Package all the package info into an easily printable row
         package_info = [
             output_package.package_id,
             output_package.depart_time,
             output_package.arrival_time if output_package.arrival_time else "",
             output_package.deadline,
             output_package.status,
+            output_package.truck,
             output_package.weight,
             output_package.zip_code,
             output_package.state,
